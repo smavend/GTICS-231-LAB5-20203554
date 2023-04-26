@@ -2,64 +2,37 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <style>
-      body{
-
-      }
-      .btn{
-        margin: 0 10px;
-      }
-      nav{
-        margin-bottom: 10px;
-      }
-      table{
-        margin-top: 20px;
-      }
-    </style>
+    <title>Integrante</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+          crossorigin="anonymous">
   </head>
   <body>
     <nav class="navbar navbar-expand" style="background-color: #c1d6fa;">
       <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}">
-          Conciertos Peru
+        <a class="navbar-brand" th:href="@{'/'}">
+          Recursos Humanos - TravelTrip
         </a>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" th:href="@{/proveedor}">Proveedores</a>
+              <a class="nav-link" aria-current="page" th:href="@{'/empleados'}">Empleados</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/integrante}">Integrantes</a>
+              <a class="nav-link" th:href="@{'/historial'}">Historial</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/artista}">Artistas</a>
+              <a class="nav-link" th:href="@{'/reportes'}">Reportes</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <a th:href="@{/nuevoConcierto}" class="btn btn-primary">Nuevo concierto</a>
-    <div class="container">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Proveedor</th>
-            <th scope="col">Artista</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="concierto: ${conciertoList}">
-            <th th:text="${concierto.id}"></th>
-            <td th:text="${concierto.fecha}"></td>
-            <td th:text="${concierto.idProveedor}"></td>
-            <td th:text="${concierto.idArtista}"></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="container text-center">
+      <img th:src="@{/travel_trip_logo.png}">
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+            crossorigin="anonymous"></script>
   </body>
 </html>
