@@ -31,6 +31,12 @@
         </nav>
         <div class="container">
             <div style="text-align: center;"><h1>Empleados totales</h1></div>
+            <div class="alert alert-success" role="alert" th:if="${msg!=null}" th:text="${msg}">
+                A simple primary alert—check it out!
+            </div>
+            <div class="alert alert-danger" role="alert" th:if="${err!=null}" th:text="${err}">
+                A simple primary alert—check it out!
+            </div>
             <form method="post" th:action="@{/empleados/buscar}">
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -39,12 +45,6 @@
                     <a class="btn btn-outline-danger" th:href="@{/empleados}" type="button">Limpiar</a>
                 </div>
             </form>
-            <div class="alert alert-primary" role="alert" th:if="${msg!=null}" th:text="${msg}">
-                A simple primary alert—check it out!
-            </div>
-            <div class="alert alert-danger" role="alert" th:if="${err!=null}" th:text="${err}">
-                A simple primary alert—check it out!
-            </div>
             <a class="btn btn-primary mt-4 mb-4" th:href="@{'/empleados/nuevo'}">Nuevo Empleado</a>
             <table class="table table-striped">
                 <tr>

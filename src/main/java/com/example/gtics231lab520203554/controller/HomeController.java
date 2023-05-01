@@ -50,7 +50,7 @@ public class HomeController {
         model.addAttribute("empleados", empleados);
         model.addAttribute("departamentos", departamentos);
 
-        return "empleadosnew";
+        return "empleadosform";
     }
 
     @PostMapping("/empleados/save")
