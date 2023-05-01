@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+          crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand" style="background-color: #c1d6fa;">
+      <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{'/'}">
+          <img th:src="@{/travel_trip_logo.png}" style="width: 40px;">
+          Recursos Humanos - TravelTrip
+        </a>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" th:href="@{'/empleados'}">Empleados</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{'/historial'}">Historial</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{'/reportes'}">Reportes</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div style="text-align: center;">
+        <h1>Reporte - Tentativa de Aumento</h1>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          Anuncio
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Lo sentimos, la página no está disponible</h5>
+          <p class="card-text">Estamos terminando de contruir la página para darte una mejor experiencia. Vuelve pronto.</p>
+          <a th:href="@{/}" class="btn btn-primary">Volver al menú principal</a>
+        </div>
+      </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+            crossorigin="anonymous"></script>
+  </body>
+</html>

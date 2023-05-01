@@ -16,7 +16,7 @@ public class Employee {
     @Column(name = "employee_id", nullable = false)
     private int employeeId;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
     @Column(name = "last_name", nullable = false)
@@ -39,5 +39,5 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "manager_id")
-    private Employee employee;
+    private Employee manager;
 }
