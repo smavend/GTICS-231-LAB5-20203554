@@ -34,6 +34,7 @@ public class HomeController {
     public String home(){
         return "home";
     }
+
     @GetMapping("/empleados")
     public String empleados(Model model){
         List<Employee> lista = employeeRepository.findAll();

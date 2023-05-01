@@ -1,83 +1,81 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Empleados</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
-              crossorigin="anonymous">
-    </head>
-    <body>
-        <nav class="navbar navbar-expand" style="background-color: #c1d6fa;">
-            <div class="container-fluid">
-                <a class="navbar-brand" th:href="@{'/'}">
-                    <img th:src="@{/travel_trip_logo.png}" style="width: 40px;">
-                    Recursos Humanos - TravelTrip
-                </a>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" th:href="@{'/empleados'}">Empleados</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{'/historial'}">Historial</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{'/reportes'}">Reportes</a>
-                        </li>
-                    </ul>
-                </div>
+  <head>
+    <meta charset="UTF-8">
+    <title>Empleados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+          crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand" style="background-color: #c1d6fa;">
+      <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{'/'}">
+          <img th:src="@{/travel_trip_logo.png}" style="width: 40px;">
+          Recursos Humanos - TravelTrip
+        </a>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" th:href="@{'/empleados'}">Empleados</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{'/historial'}">Historial</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{'/reportes'}">Reportes</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-md-6 offset-md-3">
+          <h2>Nuevo Ingreso</h2>
+          <hr/>
+          <form method="post" th:action="@{/empleados/save}">
+            <div class="mb-3">
+              <label for="firstName" class="form-label">Nombre</label>
+              <input name="firstName" type="text" class="form-control" id="firstName">
             </div>
-        </nav>
-        <div class="container">
-            <div class="row mb-4">
-                <div class="col-md-6 offset-md-3">
-                    <h2>Nuevo Ingreso</h2>
-                    <hr/>
-                    <form method="post" th:action="@{/empleados/save}">
-                        <div class="mb-3">
-                            <label for="firstName" class="form-label">Nombre</label>
-                            <input name="firstName" type="text" class="form-control" id="firstName">
-                        </div>
-                        <div class="mb-3">
-                            <label for="lastName" class="form-label">Apellido</label>
-                            <input name="lastName" type="text" class="form-control" id="lastName">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input name="email" type="email" class="form-control" id="email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input name="password" type="password" class="form-control" id="password">
-                        </div>
-                        <div class="mb-3">
-                            <label for="job" class="form-label">Puesto</label>
-                            <select name="job" class="form-select" id="job">
-                                <option th:each="job: ${trabajos}" th:value="${job.jobId}" th:text="${job.jobTitle}"></option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="salary" class="form-label">Sueldo</label>
-                            <input name="salary" type="number" class="form-control" id="salary">
-                        </div>
-                        <div class="mb-3">
-                            <label for="manager" class="form-label">Jefe</label>
-                            <select name="manager" class="form-select" id="manager">
-                                <option th:each="manager: ${empleados}" th:value="${manager.employeeId}" th:text="|${manager.firstName} ${manager.lastName}|"></option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="department" class="form-label">Departamento</label>
-                            <select name="department" class="form-select" id="department">
-                                <option th:each="departamento: ${departamentos}" th:value="${departamento.departmentId}" th:text="${departamento.departmentName}"></option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                        <a th:href="@{/empleados}" class="btn btn-danger">Cancelar</a>
-                    </form>
-                </div>
+            <div class="mb-3">
+              <label for="lastName" class="form-label">Apellido</label>
+              <input name="lastName" type="text" class="form-control" id="lastName">
             </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input name="email" type="email" class="form-control" id="email">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input name="password" type="password" class="form-control" id="password">
+            </div>
+            <div class="mb-3">
+              <label for="job" class="form-label">Puesto</label>
+              <select name="job" class="form-select" id="job">
+                <option th:each="job: ${trabajos}" th:value="${job.jobId}" th:text="${job.jobTitle}"></option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="salary" class="form-label">Sueldo</label>
+              <input name="salary" type="number" class="form-control" id="salary">
+            </div>
+            <div class="mb-3">
+              <label for="manager" class="form-label">Jefe</label>
+              <select name="manager" class="form-select" id="manager">
+                <option th:each="manager: ${empleados}" th:value="${manager.employeeId}" th:text="|${manager.firstName} ${manager.lastName}|"></option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="department" class="form-label">Departamento</label>
+              <select name="department" class="form-select" id="department">
+                <option th:each="departamento: ${departamentos}" th:value="${departamento.departmentId}" th:text="${departamento.departmentName}"></option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a th:href="@{/empleados}" class="btn btn-danger">Cancelar</a>
+          </form>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
