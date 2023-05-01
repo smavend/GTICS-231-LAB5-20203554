@@ -70,6 +70,9 @@ public class HomeController {
                                  RedirectAttributes attr){
         Optional<Employee> optionalEmployee = employeeRepository.findById(id);
         if(optionalEmployee.isPresent()){
+            employeeRepository.employeeSinJefe(id);
+            employeeRepository.departmentSinJefe(id);
+            employeeRepository.borrarHistorial(id);
             employeeRepository.delete(optionalEmployee.get());
             attr.addFlashAttribute("msg", "Empleado borrado exitosamente");
         }else {
@@ -84,6 +87,10 @@ public class HomeController {
         List<Employee> list = employeeRepository.buscar(search);
         model.addAttribute("empleados", list);
         return "empleados";
+    }
+    @GetMapping("/empleados/buscar")
+    public String volverPrincipal(){
+        return "redirect:/empleados";
     }
 
     // REPORTES

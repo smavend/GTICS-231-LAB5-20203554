@@ -4,8 +4,10 @@ import com.example.gtics231lab520203554.dto.PasswordDto;
 import com.example.gtics231lab520203554.dto.SueldosDto;
 import com.example.gtics231lab520203554.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,4 +22,19 @@ public interface EmployeeRepository  extends JpaRepository<Employee, Integer> {
 
     @Query(nativeQuery = true, value = "select job_title as puesto,truncate(max(salary),2) as maximo, truncate(min(salary),2) as minimo, truncate(sum(salary),2) as suma, truncate(avg(salary),2) as promedio from employees e inner join jobs j on (e.job_id=j.job_id) group by e.job_id")
     List<SueldosDto> listarSueldos();
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "update employees set manager_id = NULL where manager_id=?1")
+    void employeeSinJefe(int manager_id);
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "update departments set manager_id = NULL where manager_id=?1")
+    void departmentSinJefe(int manager_id);
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "delete from job_history where (employee_id=?1)")
+    void borrarHistorial(int employee_id);
 }
