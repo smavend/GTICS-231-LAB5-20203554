@@ -32,21 +32,49 @@
     <div class="container">
       <div class="row mb-4">
         <div class="col-md-6 offset-md-3">
-          <h2>Nuevo Transportista</h2>
-          <div th:if="${errorCompany != null}" th:text="${errorCompany}" class="alert alert-danger"
-               role="alert"></div>
+          <h2>Nuevo Ingreso</h2>
           <hr/>
-          <form method="post" th:action="@{'/shipper/save'}">
+          <form method="post" th:action="@{/empleados/save}">
             <div class="mb-3">
-              <label for="companyName" class="form-label">Nombre de la compañía</label>
-              <input name="companyName" type="text" class="form-control" id="companyName">
+              <label for="firstName" class="form-label">Nombre</label>
+              <input name="firstName" type="text" class="form-control" id="firstName">
             </div>
             <div class="mb-3">
-              <label for="phone" class="form-label">Teléfono</label>
-              <input name="phone" type="text" class="form-control" id="phone">
+              <label for="lastName" class="form-label">Apellido</label>
+              <input name="lastName" type="text" class="form-control" id="lastName">
             </div>
-            <a th:href="@{'/shipper/list'}" class="btn btn-danger">Cancelar</a>
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input name="email" type="email" class="form-control" id="email">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input name="password" type="password" class="form-control" id="password">
+            </div>
+            <div class="mb-3">
+              <label for="job" class="form-label">Puesto</label>
+              <select name="job" class="form-select" id="job">
+                <option th:each="job: ${trabajos}" th:value="${job.jobId}" th:text="${job.jobTitle}"></option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="salary" class="form-label">Sueldo</label>
+              <input name="salary" type="number" class="form-control" id="salary">
+            </div>
+            <div class="mb-3">
+              <label for="manager" class="form-label">Jefe</label>
+              <select name="manager" class="form-select" id="manager">
+                <option th:each="manager: ${empleados}" th:value="${manager.employeeId}" th:text="|${manager.firstName} ${manager.lastName}|"></option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="department" class="form-label">Departamento</label>
+              <select name="department" class="form-select" id="department">
+                <option th:each="departamento: ${departamentos}" th:value="${departamento.departmentId}" th:text="${departamento.departmentName}"></option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a th:href="@{/empleados}" class="btn btn-danger">Cancelar</a>
           </form>
         </div>
       </div>

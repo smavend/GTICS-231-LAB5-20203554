@@ -39,5 +39,5 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "manager_id")
-    private Employee employee;
+    private Employee manager;
 }

@@ -1,12 +1,16 @@
 package com.example.gtics231lab520203554.controller;
 
+import com.example.gtics231lab520203554.dto.PasswordDto;
+import com.example.gtics231lab520203554.entity.Department;
 import com.example.gtics231lab520203554.entity.Employee;
+import com.example.gtics231lab520203554.entity.Job;
+import com.example.gtics231lab520203554.repository.DepartmentRepository;
 import com.example.gtics231lab520203554.repository.EmployeeRepository;
+import com.example.gtics231lab520203554.repository.JobRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -16,14 +20,44 @@ import java.util.Optional;
 @Controller
 public class HomeController {
     final EmployeeRepository employeeRepository;
+    final JobRepository jobRepository;
+    final DepartmentRepository departmentRepository;
 
-    public HomeController(EmployeeRepository employeeRepository) {
+    public HomeController(EmployeeRepository employeeRepository, JobRepository jobRepository, DepartmentRepository departmentRepository) {
         this.employeeRepository = employeeRepository;
+        this.jobRepository = jobRepository;
+        this.departmentRepository = departmentRepository;
     }
 
     @GetMapping("/")
     public String home(){
         return "home";
+    }
+
+    @GetMapping("/empleados/nuevo")
+    public String nuevoEmpleado(Model model){
+        List<Job> trabajos = jobRepository.findAll();
+        List<Employee> empleados = employeeRepository.findAll();
+        List<Department> departamentos = departmentRepository.findAll();
+
+        model.addAttribute("trabajos", trabajos);
+        model.addAttribute("empleados", empleados);
+        model.addAttribute("departamentos", departamentos);
+
+        return "empleadosform";
+    }
+
+    @PostMapping("/empleados/save")
+    public String guardarEmpleado(Employee employee,
+                                  RedirectAttributes attr){
+        System.out.println("hola");
+        String password = employee.getPassword();
+        PasswordDto passwDto = employeeRepository.hashear(password);
+        employee.setPassword(passwDto.getPassword());
+        System.out.println(employee.getPassword()+ ","+employee.getDepartment().getDepartmentName() +","+ employee.getJob().getJobTitle()+","+employee.getManager().getFirstName());
+        employeeRepository.save(employee);
+        attr.addFlashAttribute("msg","Empleado creado exitosamente");
+        return "redirect:/empleados";
     }
     @GetMapping("/empleados")
     public String empleados(Model model){
