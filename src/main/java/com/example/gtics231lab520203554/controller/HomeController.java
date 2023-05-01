@@ -56,11 +56,9 @@ public class HomeController {
     @PostMapping("/empleados/save")
     public String guardarEmpleado(Employee employee,
                                   RedirectAttributes attr){
-        System.out.println("hola");
         String password = employee.getPassword();
         PasswordDto passwDto = employeeRepository.hashear(password);
         employee.setPassword(passwDto.getPassword());
-        System.out.println(employee.getPassword()+ ","+employee.getDepartment().getDepartmentName() +","+ employee.getJob().getJobTitle()+","+employee.getManager().getFirstName());
         employeeRepository.save(employee);
         attr.addFlashAttribute("msg","Empleado creado exitosamente");
         return "redirect:/empleados";
